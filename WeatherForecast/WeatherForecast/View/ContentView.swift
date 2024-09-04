@@ -9,36 +9,40 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 80) {
-            VStack(alignment: .center, spacing: 0) {
-                Image(systemName: "globe")
-                    .resizable()
-                    .aspectRatio(1.0, contentMode: .fit)
-
-                HStack(spacing: 0) {
-                    Text("UILabel")
-                        .foregroundStyle(Color.blue)
-                        .frame(maxWidth: .infinity)
-                    Text("UILabel")
-                        .foregroundStyle(Color.red)
-                        .frame(maxWidth: .infinity)
+        GeometryReader { geometry in
+            VStack(spacing: 80) {
+                VStack(alignment: .center, spacing: 0) {
+                    Image(systemName: "globe")
+                        .resizable()
+                        .aspectRatio(1.0, contentMode: .fit)
+                    
+                    HStack(spacing: 0) {
+                        Text("UILabel")
+                            .foregroundStyle(Color.blue)
+                            .frame(maxWidth: .infinity)
+                        Text("UILabel")
+                            .foregroundStyle(Color.red)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
-            }
-            .frame(maxWidth: .infinity, alignment: .center)
-            
-            HStack(spacing: 0) {
-                Button("Close") {
-                    // TODO: ここに機能を追加
-                }
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, alignment: .center)
                 
-                Button("Reload") {
-                    // TODO: ここに機能を追加
+                HStack(spacing: 0) {
+                    Button("Close") {
+                        // TODO: ここに機能を追加
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    Button("Reload") {
+                        // TODO: ここに機能を追加
+                    }
+                    .frame(maxWidth: .infinity)
                 }
-                .frame(maxWidth: .infinity)
             }
+            .frame(width: geometry.size.width / 2, height: geometry.size.height)
+            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+            
         }
-        .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
     }
 }
 
