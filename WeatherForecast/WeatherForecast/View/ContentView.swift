@@ -9,44 +9,36 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(alignment: .center) {
-            Image(systemName: "globe")
-                .resizable()
-                .aspectRatio(1.0, contentMode: .fit)
-                .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
+        VStack(spacing: 80) {
+            VStack(alignment: .center, spacing: 0) {
+                Image(systemName: "globe")
+                    .resizable()
+                    .aspectRatio(1.0, contentMode: .fit)
 
-            HStack {
-                Text("UILabel")
-                    .foregroundColor(Color.blue)
-                    .frame(maxWidth: .infinity)
-                Text("UILabel")
-                    .foregroundColor(Color.red)
-                    .frame(maxWidth: .infinity)
+                HStack(spacing: 0) {
+                    Text("UILabel")
+                        .foregroundStyle(Color.blue)
+                        .frame(maxWidth: .infinity)
+                    Text("UILabel")
+                        .foregroundStyle(Color.red)
+                        .frame(maxWidth: .infinity)
+                }
             }
-            .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
-        }
-        .frame(maxWidth: .infinity, alignment: .center)
-        
-        Spacer().frame(height: 80)
-        
-        HStack {
-            Button(action: {
-                // ここに機能を追加
-            }) {
-                Text("Close")
-                    .foregroundColor(Color.blue)
-            }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, alignment: .center)
             
-            Button(action: {
-                // ここに機能を追加
-            }) {
-                Text("Relord")
-                    .foregroundColor(Color.blue)
+            HStack(spacing: 0) {
+                Button("Close") {
+                    // TODO: ここに機能を追加
+                }
+                .frame(maxWidth: .infinity)
+                
+                Button("Reload") {
+                    // TODO: ここに機能を追加
+                }
+                .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity)
         }
-            .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
+        .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
     }
 }
 
