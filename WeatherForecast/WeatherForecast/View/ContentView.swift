@@ -9,13 +9,44 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+                .resizable()
+                .aspectRatio(1.0, contentMode: .fit)
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
+
+            HStack {
+                Text("UILabel")
+                    .foregroundColor(Color.blue)
+                    .frame(maxWidth: .infinity)
+                Text("UILabel")
+                    .foregroundColor(Color.red)
+                    .frame(maxWidth: .infinity)
+            }
+            .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
         }
-        .padding()
+        .frame(maxWidth: .infinity, alignment: .center)
+        
+        Spacer().frame(height: 80)
+        
+        HStack {
+            Button(action: {
+                // ここに機能を追加
+            }) {
+                Text("Close")
+                    .foregroundColor(Color.blue)
+            }
+            .frame(maxWidth: .infinity)
+            
+            Button(action: {
+                // ここに機能を追加
+            }) {
+                Text("Relord")
+                    .foregroundColor(Color.blue)
+            }
+            .frame(maxWidth: .infinity)
+        }
+            .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
     }
 }
 
