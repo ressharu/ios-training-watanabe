@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import YumemiWeather // YumemiWeatherをインポート
+import YumemiWeather
 
 class YumemiWeatherAPIService {
     
