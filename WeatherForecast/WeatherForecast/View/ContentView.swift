@@ -40,7 +40,7 @@ struct ContentView: View {
                 }
             }
             .frame(width: geometry.size.width / 2, height: geometry.size.height)
-            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+            .frame(maxWidth: .infinity)
             
         }
     }
