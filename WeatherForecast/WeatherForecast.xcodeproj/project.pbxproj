@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		621636AB2C897450000F255E /* YumemiWeather in Frameworks */ = {isa = PBXBuildFile; productRef = 621636AA2C897450000F255E /* YumemiWeather */; };
 		621636B12C89A4D8000F255E /* WeatherCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621636B02C89A4D8000F255E /* WeatherCondition.swift */; };
+		621636B72C8A0728000F255E /* YumemiWeather in Frameworks */ = {isa = PBXBuildFile; productRef = 621636B62C8A0728000F255E /* YumemiWeather */; };
 		62338DD52C881FEB009D2D43 /* WeatherForecastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62338DD42C881FEB009D2D43 /* WeatherForecastApp.swift */; };
 		62338DD92C881FEC009D2D43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62338DD82C881FEC009D2D43 /* Assets.xcassets */; };
 		62338DDC2C881FEC009D2D43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62338DDB2C881FEC009D2D43 /* Preview Assets.xcassets */; };
-		629337742C8833760054ACFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629337732C8833760054ACFB /* ContentView.swift */; };
+		629337742C8833760054ACFB /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629337732C8833760054ACFB /* ForecastView.swift */; };
 		6293377E2C884C260054ACFB /* YumemiWeatherAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6293377D2C884C260054ACFB /* YumemiWeatherAPIService.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,7 +22,7 @@
 		62338DD42C881FEB009D2D43 /* WeatherForecastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastApp.swift; sourceTree = "<group>"; };
 		62338DD82C881FEC009D2D43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62338DDB2C881FEC009D2D43 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		629337732C8833760054ACFB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		629337732C8833760054ACFB /* ForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
 		6293377D2C884C260054ACFB /* YumemiWeatherAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumemiWeatherAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -31,7 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				621636AB2C897450000F255E /* YumemiWeather in Frameworks */,
+				621636B72C8A0728000F255E /* YumemiWeather in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +78,7 @@
 		62338DE42C8832EA009D2D43 /* VIews */ = {
 			isa = PBXGroup;
 			children = (
-				629337732C8833760054ACFB /* ContentView.swift */,
+				629337732C8833760054ACFB /* ForecastView.swift */,
 			);
 			path = VIews;
 			sourceTree = "<group>";
@@ -116,7 +116,7 @@
 			);
 			name = WeatherForecast;
 			packageProductDependencies = (
-				621636AA2C897450000F255E /* YumemiWeather */,
+				621636B62C8A0728000F255E /* YumemiWeather */,
 			);
 			productName = WeatherForecast;
 			productReference = 62338DD12C881FEB009D2D43 /* WeatherForecast.app */;
@@ -176,7 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6293377E2C884C260054ACFB /* YumemiWeatherAPIService.swift in Sources */,
-				629337742C8833760054ACFB /* ContentView.swift in Sources */,
+				629337742C8833760054ACFB /* ForecastView.swift in Sources */,
 				62338DD52C881FEB009D2D43 /* WeatherForecastApp.swift in Sources */,
 				621636B12C89A4D8000F255E /* WeatherCondition.swift in Sources */,
 			);
@@ -397,7 +397,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		621636AA2C897450000F255E /* YumemiWeather */ = {
+		621636B62C8A0728000F255E /* YumemiWeather */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 621636A92C897450000F255E /* XCRemoteSwiftPackageReference "ios-training" */;
 			productName = YumemiWeather;

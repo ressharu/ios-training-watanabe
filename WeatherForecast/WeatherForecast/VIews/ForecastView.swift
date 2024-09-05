@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ForecastView: View {
     
     @State private var weatherCondition: WeatherCondition = .sunny // 初期状態は晴れ
     
@@ -16,7 +16,7 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 Spacer()
                 VStack(alignment: .center, spacing: 0) {
-                    Image(weatherCondition.rawValue) // EnumのrawValueを使用して画像名を設定
+                    Image(weatherCondition.ImageName) // EnumのrawValueを使用して画像名を設定
                         .resizable()
                         .renderingMode(.template)
                         .aspectRatio(1.0, contentMode: .fit)
@@ -63,5 +63,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ForecastView()
 }
