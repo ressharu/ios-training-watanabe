@@ -8,23 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		621636AB2C897450000F255E /* YumemiWeather in Frameworks */ = {isa = PBXBuildFile; productRef = 621636AA2C897450000F255E /* YumemiWeather */; };
+		621636AD2C89A0CA000F255E /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621636AC2C89A0CA000F255E /* WeatherResponse.swift */; };
 		62338DD52C881FEB009D2D43 /* WeatherForecastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62338DD42C881FEB009D2D43 /* WeatherForecastApp.swift */; };
 		62338DD92C881FEC009D2D43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62338DD82C881FEC009D2D43 /* Assets.xcassets */; };
 		62338DDC2C881FEC009D2D43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62338DDB2C881FEC009D2D43 /* Preview Assets.xcassets */; };
 		629337742C8833760054ACFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629337732C8833760054ACFB /* ContentView.swift */; };
-		6293377A2C8849CF0054ACFB /* WeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629337792C8849CF0054ACFB /* WeatherRequest.swift */; };
-		6293377C2C8849E60054ACFB /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6293377B2C8849E60054ACFB /* WeatherResponse.swift */; };
 		6293377E2C884C260054ACFB /* YumemiWeatherAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6293377D2C884C260054ACFB /* YumemiWeatherAPIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		621636AC2C89A0CA000F255E /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		62338DD12C881FEB009D2D43 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62338DD42C881FEB009D2D43 /* WeatherForecastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastApp.swift; sourceTree = "<group>"; };
 		62338DD82C881FEC009D2D43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62338DDB2C881FEC009D2D43 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		629337732C8833760054ACFB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		629337792C8849CF0054ACFB /* WeatherRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequest.swift; sourceTree = "<group>"; };
-		6293377B2C8849E60054ACFB /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		6293377D2C884C260054ACFB /* YumemiWeatherAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumemiWeatherAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,8 +86,7 @@
 		629337772C8848D20054ACFB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				629337792C8849CF0054ACFB /* WeatherRequest.swift */,
-				6293377B2C8849E60054ACFB /* WeatherResponse.swift */,
+				621636AC2C89A0CA000F255E /* WeatherResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,11 +175,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6293377A2C8849CF0054ACFB /* WeatherRequest.swift in Sources */,
+				621636AD2C89A0CA000F255E /* WeatherResponse.swift in Sources */,
 				6293377E2C884C260054ACFB /* YumemiWeatherAPIService.swift in Sources */,
 				629337742C8833760054ACFB /* ContentView.swift in Sources */,
 				62338DD52C881FEB009D2D43 /* WeatherForecastApp.swift in Sources */,
-				6293377C2C8849E60054ACFB /* WeatherResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
