@@ -25,7 +25,7 @@ class YumemiWeatherAPIService {
     }
 
     // 天気情報を取得するメソッド
-    static func fetchWeather(with jsonString: String, completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
+    private static func fetchWeather(with jsonString: String, completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
         
         // JSON文字列をData型に変換
         guard let jsonData = jsonString.data(using: .utf8) else {
