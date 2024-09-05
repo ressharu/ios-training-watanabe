@@ -54,11 +54,11 @@ struct ContentView: View {
 
     // 天気情報をAPIから取得し、状態を更新
     func reloadWeather() {
-        YumemiWeatherAPIService.reloadWeather(area: "Tokyo", date: "2020-04-01T12:00:00+09:00") { result in
+        YumemiWeatherAPIService.reloadWeather() { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weatherResponse):
-                    self.weatherCondition = weatherResponse.weatherCondition
+                    self.weatherCondition = weatherResponse.condition
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
