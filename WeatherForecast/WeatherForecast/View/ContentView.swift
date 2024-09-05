@@ -10,12 +10,12 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
-            VStack(spacing: 80) {
+            VStack(spacing: 0) {
+                Spacer()
                 VStack(alignment: .center, spacing: 0) {
                     Image(systemName: "globe")
                         .resizable()
                         .aspectRatio(1.0, contentMode: .fit)
-                    
                     HStack(spacing: 0) {
                         Text("UILabel")
                             .foregroundStyle(Color.blue)
@@ -25,23 +25,25 @@ struct ContentView: View {
                             .frame(maxWidth: .infinity)
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
-                
-                HStack(spacing: 0) {
-                    Button("Close") {
-                        // TODO: ここに機能を追加
+                .frame(maxWidth: .infinity)
+                Spacer()
+                    .overlay(alignment: .top) {
+                        HStack(spacing: 0) {
+                            Button("Close") {
+                                // TODO: ここに機能を追加
+                            }
+                            .frame(maxWidth: .infinity)
+                            Button("Reload") {
+                                // TODO: ここに機能を追加
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .padding(.top, 80)
+                        .frame(width: geometry.size.width / 2)
                     }
-                    .frame(maxWidth: .infinity)
-                    
-                    Button("Reload") {
-                        // TODO: ここに機能を追加
-                    }
-                    .frame(maxWidth: .infinity)
-                }
             }
             .frame(width: geometry.size.width / 2, height: geometry.size.height)
             .frame(maxWidth: .infinity)
-            
         }
     }
 }
