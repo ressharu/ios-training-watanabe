@@ -9,16 +9,16 @@ import Foundation
 import YumemiWeather
 
 class YumemiWeatherAPIService {
-    
     // リロード用の新しいメソッドを定義
-    static func reloadWeather(completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
-            fetchWeatherCondition(completion: completion)
+    static func reloadWeather(completion: @escaping (WeatherCondition) -> Void) {
+        fetchWeatherCondition(completion: completion)
     }
-    
-    // 天気情報を取得するメソッド（シンプルバージョン）
-    private static func fetchWeatherCondition(completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
-        let weatherCondition = YumemiWeather.fetchWeatherCondition()
-        let weatherResponse = WeatherResponse(condition: weatherCondition)
-        completion(.success(weatherResponse))
+    // 天気情報を取得するメソッド
+    private static func fetchWeatherCondition(completion: @escaping (WeatherCondition) -> Void) {
+        let weatherConditionString = YumemiWeather.fetchWeatherCondition()
+        
+        let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
+        print(weatherCondition)
+        completion(weatherCondition)
     }
 }

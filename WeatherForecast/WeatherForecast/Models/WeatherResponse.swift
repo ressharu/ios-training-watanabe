@@ -6,9 +6,5 @@
 //
 
 struct WeatherResponse: Codable {
-    let condition: String
-
-    enum CodingKeys: String, CodingKey {
-        case condition = "sunny"
-    }
+    let condition: WeatherCondition
 }

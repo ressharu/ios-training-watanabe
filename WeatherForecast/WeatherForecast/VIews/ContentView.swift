@@ -9,18 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var weatherCondition: String = "sunny" // 初期状態は晴れの画像
+    @State private var weatherCondition: WeatherCondition = .sunny // 初期状態は晴れ
     
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 Spacer()
                 VStack(alignment: .center, spacing: 0) {
-                    Image(weatherCondition)
+                    Image(weatherCondition.rawValue) // EnumのrawValueを使用して画像名を設定
                         .resizable()
                         .renderingMode(.template)
                         .aspectRatio(1.0, contentMode: .fit)
-                        .foregroundStyle(weatherColor())
+                        .foregroundStyle(weatherCondition.color) // Enumのcolorプロパティを使用
                     HStack(spacing: 0) {
                         Text("UILabel")
                             .foregroundStyle(Color.blue)
@@ -54,29 +54,10 @@ struct ContentView: View {
 
     // 天気情報をAPIから取得し、状態を更新
     func reloadWeather() {
-        YumemiWeatherAPIService.reloadWeather() { result in
+        YumemiWeatherAPIService.reloadWeather() { weatherCondition in
             DispatchQueue.main.async {
-                switch result {
-                case .success(let weatherResponse):
-                    self.weatherCondition = weatherResponse.condition
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+                self.weatherCondition = weatherCondition
             }
-        }
-    }
-    
-    // 天気に応じた色
-    func weatherColor() -> Color {
-        switch weatherCondition {
-            case "sunny":
-                .red
-            case "cloudy":
-                .gray
-            case "rainy":
-                .blue
-            default:
-                .black
         }
     }
 }
