@@ -70,13 +70,13 @@ struct ContentView: View {
     func weatherColor() -> Color {
         switch weatherCondition {
             case "sunny":
-                return .red
+                .red
             case "cloudy":
-                return .gray
+                .gray
             case "rainy":
-                return .blue
+                .blue
             default:
-                return .black
+                .black
         }
     }
 }
