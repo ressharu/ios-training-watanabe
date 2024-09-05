@@ -22,4 +22,15 @@ enum WeatherCondition: String {
             return .blue
         }
     }
+    
+    var ImageName:  String  {
+        switch self {
+        case .sunny:
+            return "sunny"
+        case .cloudy:
+            return "cloudy"
+        case .rainy:
+            return "rainy"
+        }
+    }
 }
