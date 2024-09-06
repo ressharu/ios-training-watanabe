@@ -11,11 +11,10 @@ import YumemiWeather
 final class YumemiWeatherAPIService {
     // リロード用の新しいメソッドを定義
     static func reloadWeather(area: String, date: String, completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
-        // 仮のリクエスト JSON
         let request = WeatherRequest(area: area, date: date)
         guard let jsonString = try? JSONEncoder().encode(request),
               let jsonStringAsString = String(data: jsonString, encoding: .utf8) else {
-            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid JSON format: Unable to convert WeatherRequest to JSON string"])
+            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "リクエストのデータが正しくありません。もう一度試してください。"])
             completion(.failure(error))
             return
         }
@@ -28,7 +27,7 @@ final class YumemiWeatherAPIService {
         
         // JSON文字列をData型に変換
         guard let jsonData = jsonString.data(using: .utf8) else {
-            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid JSON format: Unable to convert jsonString to Data"])
+            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "システムエラーが発生しました。再度お試しください。"])
             completion(.failure(error))
             return
         }
@@ -39,7 +38,7 @@ final class YumemiWeatherAPIService {
             
             // レスポンスデータをDataに変換
             guard let responseData = responseString.data(using: .utf8) else {
-                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to convert responseString to Data"])
+                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "サーバーからのデータの処理に失敗しました。後ほど再度お試しください。"])
                 completion(.failure(error))
                 return
             }
@@ -50,17 +49,17 @@ final class YumemiWeatherAPIService {
                 print(weatherResponse)
                 completion(.success(weatherResponse))
             } catch let decodingError {
-                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "天気情報の読み取りに失敗しました"])
+                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "天気情報の読み取りに失敗しました。再度お試しください。"])
                 completion(.failure(error))
             }
         } catch YumemiWeatherError.invalidParameterError {
-            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "無効な値が渡されました"])
+            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "リクエストに無効な情報が含まれています。再度お試しください。"])
             completion(.failure(error))
         } catch YumemiWeatherError.unknownError {
-            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "不明なエラーが発生しました"])
+            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "不明なエラーが発生しました。後ほど再度お試しください。"])
             completion(.failure(error))
         } catch {
-            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "予期しないエラーが発生しました"])
+            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "予期しないエラーが発生しました。再度お試しください。"])
             completion(.failure(error))
         }
     }
