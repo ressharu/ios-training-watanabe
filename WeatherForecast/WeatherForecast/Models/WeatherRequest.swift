@@ -2,10 +2,8 @@
 //  WeatherRequest.swift
 //  WeatherForecast
 //
-//  Created by 渡邉 華輝 on 2024/09/04.
+//  Created by 渡邉 華輝 on 2024/09/06.
 //
-
-import Foundation
 
 struct WeatherRequest: Codable {
     let area: String
