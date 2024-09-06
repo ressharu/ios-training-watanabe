@@ -9,18 +9,18 @@ import SwiftUI
 
 struct ForecastView: View {
     
-    @State private var weatherCondition: WeatherCondition = .sunny // 初期状態は晴れ
+    @ObservedObject var weatherController = WeatherController()
     
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 Spacer()
                 VStack(alignment: .center, spacing: 0) {
-                    Image(weatherCondition.ImageName) // EnumのrawValueを使用して画像名を設定
+                    Image(weatherController.weatherCondition.ImageName) // EnumのrawValueを使用して画像名を設定
                         .resizable()
                         .renderingMode(.template)
                         .aspectRatio(1.0, contentMode: .fit)
-                        .foregroundStyle(weatherCondition.color) // Enumのcolorプロパティを使用
+                        .foregroundStyle(weatherController.weatherCondition.color) // Enumのcolorプロパティを使用
                     HStack(spacing: 0) {
                         Text("UILabel")
                             .foregroundStyle(Color.blue)
@@ -39,7 +39,7 @@ struct ForecastView: View {
                             }
                             .frame(maxWidth: .infinity)
                             Button("Reload") {
-                                reloadWeather()
+                                weatherController.reloadWeather()
                             }
                             .frame(maxWidth: .infinity)
                         }
@@ -49,15 +49,6 @@ struct ForecastView: View {
             }
             .frame(width: geometry.size.width / 2, height: geometry.size.height)
             .frame(maxWidth: .infinity)
-        }
-    }
-
-    // 天気情報をAPIから取得し、状態を更新
-    func reloadWeather() {
-        YumemiWeatherAPIService.reloadWeather() { weatherCondition in
-            DispatchQueue.main.async {
-                self.weatherCondition = weatherCondition
-            }
         }
     }
 }
