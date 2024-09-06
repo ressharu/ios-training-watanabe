@@ -8,7 +8,7 @@
 import Foundation
 import YumemiWeather
 
-class YumemiWeatherAPIService {
+final class YumemiWeatherAPIService {
     // リロード用の新しいメソッドを定義
     static func reloadWeather(completion: @escaping (WeatherCondition) -> Void) {
         fetchWeatherCondition(completion: completion)
