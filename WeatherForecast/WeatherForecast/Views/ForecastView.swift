@@ -7,15 +7,20 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ForecastView: View {
+    
+    @ObservedObject var weatherController = WeatherController()
+    
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 Spacer()
                 VStack(alignment: .center, spacing: 0) {
-                    Image(systemName: "globe")
+                    Image(weatherController.weatherCondition.ImageName) // EnumのrawValueを使用して画像名を設定
                         .resizable()
+                        .renderingMode(.template)
                         .aspectRatio(1.0, contentMode: .fit)
+                        .foregroundStyle(weatherController.weatherCondition.color) // Enumのcolorプロパティを使用
                     HStack(spacing: 0) {
                         Text("UILabel")
                             .foregroundStyle(Color.blue)
@@ -34,7 +39,7 @@ struct ContentView: View {
                             }
                             .frame(maxWidth: .infinity)
                             Button("Reload") {
-                                // TODO: ここに機能を追加
+                                weatherController.reloadWeather()
                             }
                             .frame(maxWidth: .infinity)
                         }
@@ -49,5 +54,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ForecastView()
 }
