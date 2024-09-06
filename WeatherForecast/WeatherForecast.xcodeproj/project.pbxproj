@@ -60,7 +60,7 @@
 				62338DD42C881FEB009D2D43 /* WeatherForecastApp.swift */,
 				629337782C8848FA0054ACFB /* Services */,
 				629337772C8848D20054ACFB /* Models */,
-				62338DE42C8832EA009D2D43 /* VIews */,
+				62338DE42C8832EA009D2D43 /* Views */,
 				62338DD82C881FEC009D2D43 /* Assets.xcassets */,
 				62338DDA2C881FEC009D2D43 /* Preview Content */,
 			);
@@ -75,12 +75,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		62338DE42C8832EA009D2D43 /* VIews */ = {
+		62338DE42C8832EA009D2D43 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				629337732C8833760054ACFB /* ForecastView.swift */,
 			);
-			path = VIews;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		629337772C8848D20054ACFB /* Models */ = {
