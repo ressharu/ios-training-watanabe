@@ -14,7 +14,7 @@ final class YumemiWeatherAPIService {
         fetchWeatherCondition(completion: completion)
     }
     // 天気情報を取得するメソッド
-    private static func fetchWeatherCondition(completion: @escaping (WeatherCondition) -> Void) {
+    private static func fetchWeatherCondition(completion: (WeatherCondition) -> Void) {
         let weatherConditionString = YumemiWeather.fetchWeatherCondition()
         
         let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
