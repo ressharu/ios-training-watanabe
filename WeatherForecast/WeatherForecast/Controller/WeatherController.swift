@@ -10,6 +10,7 @@ import SwiftUI
 final class WeatherController: ObservableObject {
     @Published var weatherCondition: WeatherCondition = .sunny // 初期状態は晴れ
     @Published var errorMessage: String? // エラーメッセージを表示するためのプロパティ
+    @Published var isErrorPresented: Bool = false
     
     // 天気情報をAPIから取得し、状態を更新するメソッド
     func reloadWeather() {
@@ -27,6 +28,7 @@ final class WeatherController: ObservableObject {
                     // エラーが発生した場合、エラーメッセージを更新
                     self?.errorMessage = "天気の取得に失敗しました: \(error.localizedDescription)"
                     print(self?.errorMessage ?? "")
+                    self?.isErrorPresented = true
                 }
             }
         }
