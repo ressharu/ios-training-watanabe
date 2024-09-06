@@ -22,10 +22,10 @@ struct ForecastView: View {
                         .aspectRatio(1.0, contentMode: .fit)
                         .foregroundStyle(weatherController.weatherCondition.color) // Enumのcolorプロパティを使用
                     HStack(spacing: 0) {
-                        Text("UILabel")
+                        Text("\(weatherController.minTemperature)")
                             .foregroundStyle(Color.blue)
                             .frame(maxWidth: .infinity)
-                        Text("UILabel")
+                        Text("\(weatherController.maxTemperature)")
                             .foregroundStyle(Color.red)
                             .frame(maxWidth: .infinity)
                     }
