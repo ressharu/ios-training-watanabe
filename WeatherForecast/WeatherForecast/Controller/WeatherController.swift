@@ -25,8 +25,7 @@ final class WeatherController: ObservableObject {
                     print(self?.weatherCondition ?? "")
                     self?.errorMessage = nil // エラーがなければメッセージをクリア
                 case .failure(let error):
-                    // エラーが発生した場合、エラーメッセージを更新
-                    self?.errorMessage = "天気の取得に失敗しました: \(error.localizedDescription)"
+                    self?.errorMessage = String(error.localizedDescription)
                     print(self?.errorMessage ?? "")
                     self?.isErrorPresented = true
                 }

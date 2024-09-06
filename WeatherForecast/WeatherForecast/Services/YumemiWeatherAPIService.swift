@@ -16,7 +16,11 @@ final class YumemiWeatherAPIService {
             let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
             completion(.success(weatherCondition))
         } catch let error as YumemiWeatherError {
-            completion(.failure(error))
+            // NSErrorを作成してエラーメッセージを提供
+            let errorMessage = NSError(domain: "YumemiWeatherAPI", code: error._code, userInfo: [
+                NSLocalizedDescriptionKey: "天気情報の取得中にエラーが発生しました。再度お試しください。"
+            ])
+            completion(.failure(errorMessage))
         } catch {
             completion(.failure(error))
         }
