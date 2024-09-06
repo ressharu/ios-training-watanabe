@@ -16,9 +16,9 @@ final class WeatherController: ObservableObject {
 
         let area = "tokyo"
         
-        YumemiWeatherAPIService.reloadWeather(for: area) { [weak self] weatherCondition in
+        YumemiWeatherAPIService.reloadWeather(for: area) { [weak self] result in
             DispatchQueue.main.async {
-                switch weatherCondition {
+                switch result {
                 case .success(let weatherCondition):
                     self?.weatherCondition = weatherCondition
                     print(self?.weatherCondition ?? "")
