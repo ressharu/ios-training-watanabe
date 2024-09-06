@@ -10,15 +10,22 @@ import YumemiWeather
 
 final class YumemiWeatherAPIService {
     // リロード用の新しいメソッドを定義
-    static func reloadWeather(completion: @escaping (WeatherCondition) -> Void) {
-        fetchWeatherCondition(completion: completion)
-    }
-    // 天気情報を取得するメソッド
-    private static func fetchWeatherCondition(completion: (WeatherCondition) -> Void) {
-        let weatherConditionString = YumemiWeather.fetchWeatherCondition()
-        
-        let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
-        print(weatherCondition)
-        completion(weatherCondition)
+    static func reloadWeather(for area: String, completion: @escaping (Result<WeatherCondition, Error>) -> Void) {
+        do {
+            // fetchWeatherCondition(at:) を呼び出す
+            let weatherConditionString = try YumemiWeather.fetchWeatherCondition(at: area)
+            
+            // 天気の状態を WeatherCondition に変換
+            let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
+            
+            // 成功時に結果を completion に渡す
+            completion(.success(weatherCondition))
+        } catch let error as YumemiWeatherError {
+            // YumemiWeatherError 型のエラーをキャッチ
+            completion(.failure(error))
+        } catch {
+            // その他の予期しないエラーをキャッチ
+            completion(.failure(error))
+        }
     }
 }
