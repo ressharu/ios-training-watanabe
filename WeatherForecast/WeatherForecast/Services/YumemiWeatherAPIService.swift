@@ -25,9 +25,9 @@ extension YumemiWeatherError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .invalidParameterError:
-            return String(localized: "無効なパラメータが指定されました。再度お試しください。", comment: "")
+            return String(localized: "無効なパラメータが指定されました。再度お試しください。")
         case .unknownError:
-            return String(localized: "不明なエラーが発生しました。再度お試しください。", comment: "")
+            return String(localized: "不明なエラーが発生しました。再度お試しください。")
         }
     }
 }
