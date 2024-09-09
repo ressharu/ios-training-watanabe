@@ -21,14 +21,13 @@ final class YumemiWeatherAPIService {
     }
 }
 
-
 extension YumemiWeatherError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .invalidParameterError:
-            return NSLocalizedString("無効なパラメータが指定されました。再度お試しください。", comment: "")
+            return String(localized: "無効なパラメータが指定されました。再度お試しください。", comment: "")
         case .unknownError:
-            return NSLocalizedString("不明なエラーが発生しました。再度お試しください。", comment: "")
+            return String(localized: "不明なエラーが発生しました。再度お試しください。", comment: "")
         }
     }
 }
