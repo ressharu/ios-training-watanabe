@@ -11,7 +11,6 @@ import YumemiWeather
 final class YumemiWeatherAPIService {
     // リロード用の新しいメソッドを定義
     static func reloadWeather(area: String, date: String, completion: (Result<WeatherResponse, Error>) -> Void) {
-        // 仮のリクエスト JSON
         let request = WeatherRequest(area: area, date: date)
         guard let jsonString = try? JSONEncoder().encode(request),
               let jsonStringAsString = String(data: jsonString, encoding: .utf8) else {
@@ -53,14 +52,7 @@ final class YumemiWeatherAPIService {
                 let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "天気情報の読み取りに失敗しました。再度お試しください。"])
                 completion(.failure(error))
             }
-        } catch YumemiWeatherError.invalidParameterError {
-            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "リクエストに無効な情報が含まれています。再度お試しください。"])
-            completion(.failure(error))
-        } catch YumemiWeatherError.unknownError {
-            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "不明なエラーが発生しました。後ほど再度お試しください。"])
-            completion(.failure(error))
         } catch {
-            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "予期しないエラーが発生しました。再度お試しください。"])
             completion(.failure(error))
         }
     }
