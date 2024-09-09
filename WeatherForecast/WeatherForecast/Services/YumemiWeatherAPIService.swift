@@ -15,8 +15,6 @@ final class YumemiWeatherAPIService {
             let weatherConditionString = try YumemiWeather.fetchWeatherCondition(at: area)
             let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
             completion(.success(weatherCondition))
-        } catch let error as YumemiWeatherError {
-            completion(.failure(error))
         } catch {
             completion(.failure(error))
         }
