@@ -10,7 +10,7 @@ import YumemiWeather
 
 final class YumemiWeatherAPIService {
     // リロード用の新しいメソッドを定義
-    static func reloadWeather(for area: String, completion: @escaping (Result<WeatherCondition, Error>) -> Void) {
+    static func reloadWeather(for area: String, completion: (Result<WeatherCondition, Error>) -> Void) {
         do {
             let weatherConditionString = try YumemiWeather.fetchWeatherCondition(at: area)
             let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
