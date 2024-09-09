@@ -42,11 +42,12 @@ struct ForecastView: View {
                                 weatherController.reloadWeather()
                             }
                             .frame(maxWidth: .infinity)
-                            .alert("Error", isPresented: $weatherController.isErrorPresented) {
+                            .alert("Error", isPresented: $weatherController.isErrorPresented, presenting: weatherController.errorMessage) { _ in
                                 Button("OK") {
                                 }
-                            } message: {
-                                Text(weatherController.errorMessage ?? "")
+                            } message: { errorMessage in
+
+                                Text(errorMessage)
                             }
                         }
                         .padding(.top, 80)
