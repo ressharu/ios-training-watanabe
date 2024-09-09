@@ -10,15 +10,24 @@ import YumemiWeather
 
 final class YumemiWeatherAPIService {
     // リロード用の新しいメソッドを定義
-    static func reloadWeather(completion: @escaping (WeatherCondition) -> Void) {
-        fetchWeatherCondition(completion: completion)
+    static func reloadWeather(for area: String, completion: (Result<WeatherCondition, Error>) -> Void) {
+        do {
+            let weatherConditionString = try YumemiWeather.fetchWeatherCondition(at: area)
+            let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
+            completion(.success(weatherCondition))
+        } catch {
+            completion(.failure(error))
+        }
     }
-    // 天気情報を取得するメソッド
-    private static func fetchWeatherCondition(completion: (WeatherCondition) -> Void) {
-        let weatherConditionString = YumemiWeather.fetchWeatherCondition()
-        
-        let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
-        print(weatherCondition)
-        completion(weatherCondition)
+}
+
+extension YumemiWeatherError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .invalidParameterError:
+            return String(localized: "無効なパラメータが指定されました。再度お試しください。")
+        case .unknownError:
+            return String(localized: "不明なエラーが発生しました。再度お試しください。")
+        }
     }
 }
