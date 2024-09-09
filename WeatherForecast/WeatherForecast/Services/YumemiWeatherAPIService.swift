@@ -48,7 +48,7 @@ final class YumemiWeatherAPIService {
                 let weatherResponse = try JSONDecoder().decode(WeatherResponse.self, from: responseData)
                 print(weatherResponse)
                 completion(.success(weatherResponse))
-            } catch let decodingError {
+            } catch _ {
                 let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "天気情報の読み取りに失敗しました。再度お試しください。"])
                 completion(.failure(error))
             }
