@@ -16,13 +16,21 @@ final class YumemiWeatherAPIService {
             let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
             completion(.success(weatherCondition))
         } catch let error as YumemiWeatherError {
-            // NSErrorを作成してエラーメッセージを提供
-            let errorMessage = NSError(domain: "YumemiWeatherAPI", code: error._code, userInfo: [
-                NSLocalizedDescriptionKey: "天気情報の取得中にエラーが発生しました。再度お試しください。"
-            ])
-            completion(.failure(errorMessage))
+            completion(.failure(error))
         } catch {
             completion(.failure(error))
+        }
+    }
+}
+
+
+extension YumemiWeatherError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .invalidParameterError:
+            return NSLocalizedString("無効なパラメータが指定されました。再度お試しください。", comment: "")
+        case .unknownError:
+            return NSLocalizedString("不明なエラーが発生しました。再度お試しください。", comment: "")
         }
     }
 }
