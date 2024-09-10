@@ -9,8 +9,12 @@ import SwiftUI
 
 final class WeatherController: ObservableObject {
     @Published var weatherResponse: WeatherResponse = WeatherResponse(maxTemperature: 0, date: "", minTemperature: 0, weatherCondition: .sunny)
-    @Published var errorMessage: String? // エラーメッセージを表示するためのプロパティ
-    @Published var isErrorPresented: Bool = false
+    @Published var errorMessage: String? {
+        didSet {
+            self.hasError = (errorMessage != nil)
+        }
+    }
+    @Published var hasError: Bool = false
     
     // 天気情報をAPIから取得し、状態を更新するメソッド
     func reloadWeather() {
@@ -26,7 +30,6 @@ final class WeatherController: ObservableObject {
                 case .failure(let error):
                     self?.errorMessage = String(error.localizedDescription)
                     print(self?.errorMessage ?? "")
-                    self?.isErrorPresented = true
                 }
             }
         }
