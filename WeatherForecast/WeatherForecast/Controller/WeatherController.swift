@@ -8,9 +8,7 @@
 import SwiftUI
 
 final class WeatherController: ObservableObject {
-    @Published var weatherCondition: WeatherCondition = .sunny // 初期状態は晴れ
-    @Published var minTemperature: Int = 0 // 最低気温
-    @Published var maxTemperature: Int = 0 // 最高気温
+    @Published var weatherResponse: WeatherResponse = WeatherResponse(maxTemperature: 0, date: "", minTemperature: 0, weatherCondition: .sunny)
     @Published var errorMessage: String? // エラーメッセージを表示するためのプロパティ
     @Published var isErrorPresented: Bool = false
     
@@ -24,9 +22,7 @@ final class WeatherController: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weatherResponse):
-                    self?.weatherCondition = weatherResponse.weatherCondition
-                    self?.minTemperature = weatherResponse.minTemperature
-                    self?.maxTemperature = weatherResponse.maxTemperature
+                    self?.weatherResponse = weatherResponse
                     self?.errorMessage = nil // エラーがなければメッセージをクリア
                 case .failure(let error):
                     self?.errorMessage = String(error.localizedDescription)
