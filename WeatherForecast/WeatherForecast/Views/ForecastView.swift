@@ -10,6 +10,7 @@ import SwiftUI
 struct ForecastView: View {
     
     @ObservedObject var weatherController = WeatherController()
+    @State private var showClosedView = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -35,9 +36,12 @@ struct ForecastView: View {
                     .overlay(alignment: .top) {
                         HStack(spacing: 0) {
                             Button("Close") {
-                                // TODO: ここに機能を追加
+                                showClosedView = true
                             }
                             .frame(maxWidth: .infinity)
+                            .fullScreenCover(isPresented: $showClosedView, content: {
+                                                            ClosedView(isPresented: $showClosedView)
+                                                        })
                             Button("Reload") {
                                 weatherController.reloadWeather()
                             }
