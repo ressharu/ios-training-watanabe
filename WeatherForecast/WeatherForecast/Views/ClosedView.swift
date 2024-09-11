@@ -12,10 +12,22 @@ struct ClosedView: View {
     
     var body: some View {
         VStack {}
-            .onAppear {
-                isPresented = false
-            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.black)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    showClosedView = true
+                }
+            }
+            .onChange(of: showClosedView) {
+                if !showClosedView {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        showClosedView = true
+                    }
+                }
+            }
+            .fullScreenCover(isPresented: $showClosedView) {
+                ForecastView(showClosedView: $showClosedView)
+            }
     }
 }
