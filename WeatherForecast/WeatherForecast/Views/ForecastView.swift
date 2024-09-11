@@ -10,7 +10,7 @@ import SwiftUI
 struct ForecastView: View {
     
     @ObservedObject var weatherController = WeatherController()
-    @State private var showClosedView = false
+    @Binding var showClosedView: Bool
     
     var body: some View {
         GeometryReader { geometry in

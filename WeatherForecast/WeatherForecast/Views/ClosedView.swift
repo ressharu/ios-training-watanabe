@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ClosedView: View {
-    @Binding var isPresented: Bool
+    @State private var showClosedView = false
     
     var body: some View {
         VStack {}
