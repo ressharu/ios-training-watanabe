@@ -60,7 +60,3 @@ struct ForecastView: View {
         }
     }
 }
-
-#Preview {
-    ForecastView()
-}
