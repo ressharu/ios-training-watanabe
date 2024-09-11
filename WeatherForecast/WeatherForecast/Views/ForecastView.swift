@@ -60,7 +60,3 @@ struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
         }
     }
 }
-
-#Preview {
-    ForecastView()
-}
