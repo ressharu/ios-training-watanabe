@@ -40,8 +40,8 @@ struct ForecastView: View {
                             }
                             .frame(maxWidth: .infinity)
                             .fullScreenCover(isPresented: $showClosedView, content: {
-                                                            ClosedView(isPresented: $showClosedView)
-                                                        })
+                                ClosedView(isPresented: $showClosedView)
+                            })
                             Button("Reload") {
                                 weatherController.reloadWeather()
                             }
@@ -50,7 +50,7 @@ struct ForecastView: View {
                                 Button("OK") {
                                 }
                             } message: { errorMessage in
-
+                                
                                 Text(errorMessage)
                             }
                         }
