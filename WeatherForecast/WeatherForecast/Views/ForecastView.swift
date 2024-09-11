@@ -36,12 +36,9 @@ struct ForecastView: View {
                     .overlay(alignment: .top) {
                         HStack(spacing: 0) {
                             Button("Close") {
-                                showClosedView = true
+                                showClosedView = false
                             }
                             .frame(maxWidth: .infinity)
-                            .fullScreenCover(isPresented: $showClosedView, content: {
-                                ClosedView(isPresented: $showClosedView)
-                            })
                             Button("Reload") {
                                 weatherController.reloadWeather()
                             }
