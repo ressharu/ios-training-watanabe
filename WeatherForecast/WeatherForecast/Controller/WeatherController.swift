@@ -7,7 +7,14 @@
 
 import SwiftUI
 
-final class WeatherController: ObservableObject {
+protocol ForecastViewControllerProtocol: ObservableObject {
+    var weatherResponse: WeatherResponse { get }
+    var errorMessage: String? { get }
+    var hasError: Bool { get set }
+    func reloadWeather()
+}
+
+final class WeatherControllerImpl: ForecastViewControllerProtocol {
     @Published var weatherResponse: WeatherResponse = WeatherResponse(maxTemperature: 0, date: "", minTemperature: 0, weatherCondition: .sunny)
     @Published var errorMessage: String? {
         didSet {

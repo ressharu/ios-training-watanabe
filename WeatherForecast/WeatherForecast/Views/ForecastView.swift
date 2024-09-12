@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ForecastView: View {
-    
-    @ObservedObject var weatherController = WeatherController()
+struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
+    @Environment(\.dismiss) var dismiss
+    @StateObject var weatherController: WeatherController
     
     var body: some View {
         GeometryReader { geometry in
