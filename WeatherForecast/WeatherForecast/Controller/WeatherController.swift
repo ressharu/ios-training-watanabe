@@ -18,7 +18,7 @@ final class WeatherController: ObservableObject {
     
     // 天気情報をAPIから取得し、状態を更新するメソッド
     func reloadWeather() {
-        
+
         let weatherRequest: WeatherRequest = WeatherRequest(area: "tokyo", date: "2024-09-06T12:00:00+09:00")
         
         YumemiWeatherAPIService.reloadWeather(request: weatherRequest) { [weak self] result in

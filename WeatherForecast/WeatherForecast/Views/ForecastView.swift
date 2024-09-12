@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ForecastView: View {
-    @Environment(\.dismiss) var dismiss
+    
     @ObservedObject var weatherController = WeatherController()
     
     var body: some View {
@@ -35,7 +35,7 @@ struct ForecastView: View {
                     .overlay(alignment: .top) {
                         HStack(spacing: 0) {
                             Button("Close") {
-                                dismiss()
+                                // TODO: ここに機能を追加
                             }
                             .frame(maxWidth: .infinity)
                             Button("Reload") {
@@ -43,9 +43,10 @@ struct ForecastView: View {
                             }
                             .frame(maxWidth: .infinity)
                             .alert("Error", isPresented: $weatherController.hasError, presenting: weatherController.errorMessage) { _ in
-                                Button("OK") {}
+                                Button("OK") {
+                                }
                             } message: { errorMessage in
-                                
+
                                 Text(errorMessage)
                             }
                         }
@@ -57,4 +58,8 @@ struct ForecastView: View {
             .frame(maxWidth: .infinity)
         }
     }
+}
+
+#Preview {
+    ForecastView()
 }

@@ -10,7 +10,7 @@ struct WeatherResponse: Codable {
     let date: String
     let minTemperature: Int
     let weatherCondition: WeatherCondition
-    
+
     enum CodingKeys: String, CodingKey {
         case maxTemperature = "max_temperature"
         case date
