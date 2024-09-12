@@ -16,7 +16,6 @@ final class YumemiWeatherAPIService {
             completion(.failure(YumemiWeatherAPIError.invalidRequestDataError))
             return
         }
-        
         fetchWeather(with: jsonStringAsString, completion: completion)
     }
     
