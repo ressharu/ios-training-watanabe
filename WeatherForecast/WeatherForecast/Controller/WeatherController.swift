@@ -18,8 +18,8 @@ final class WeatherController: ObservableObject {
     @Published var hasError: Bool = false
 
     init() {
-        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { [unowned self] _ in
-            reloadWeather()
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { [weak self] _ in
+            self?.reloadWeather()
         }
     }
     
