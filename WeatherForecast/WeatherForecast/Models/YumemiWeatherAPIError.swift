@@ -9,8 +9,6 @@ import Foundation
 
 enum YumemiWeatherAPIError: LocalizedError {
     case invalidRequestDataError
-    case jsonEncodingError
-    case responseDataError
     case decodingError
     case unknownError
     
@@ -18,10 +16,6 @@ enum YumemiWeatherAPIError: LocalizedError {
         switch self {
         case .invalidRequestDataError:
             return "リクエストのデータが正しくありません。再度お試しください。"
-        case .jsonEncodingError:
-            return "システムエラーが発生しました。再度お試しください。"
-        case .responseDataError:
-            return "サーバーからのデータの処理に失敗しました。後ほど再度お試しください。"
         case .decodingError:
             return "天気情報の読み取りに失敗しました。再度お試しください。"
         case .unknownError:
