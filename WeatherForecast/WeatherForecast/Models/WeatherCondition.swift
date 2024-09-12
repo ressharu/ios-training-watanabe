@@ -11,7 +11,7 @@ enum WeatherCondition: String, Codable {
     case sunny
     case cloudy
     case rainy
-
+    
     var color: Color {
         switch self {
         case .sunny:
