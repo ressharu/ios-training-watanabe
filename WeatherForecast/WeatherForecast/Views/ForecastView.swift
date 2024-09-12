@@ -36,7 +36,7 @@ struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
                     .overlay(alignment: .top) {
                         HStack(spacing: 0) {
                             Button("Close") {
-                                // TODO: ここに機能を追加
+                                dismiss()
                             }
                             .frame(maxWidth: .infinity)
                             Button("Reload") {
