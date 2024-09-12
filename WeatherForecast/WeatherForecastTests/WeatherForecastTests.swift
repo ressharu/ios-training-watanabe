@@ -30,4 +30,20 @@ final class WeatherForecastTests: XCTestCase {
         let image = try view.inspect().find(viewWithAccessibilityIdentifier: "sunny")
         XCTAssertNotNil(image, "天気が晴れのときに晴れの画像が表示されるべきです")
     }
+    
+    func testCloudyWeatherImage() throws {
+        weatherController.weatherResponse.weatherCondition = .cloudy
+        let view = ForecastView(weatherController: self.weatherController)
+        
+        let image = try view.inspect().find(viewWithAccessibilityIdentifier: "cloudy")
+        XCTAssertNotNil(image, "天気が曇りのときに曇りの画像が表示されるべきです")
+    }
+    
+    func testRainyWeatherImage() throws {
+        weatherController.weatherResponse.weatherCondition = .rainy
+        let view = ForecastView(weatherController: self.weatherController)
+        
+        let image = try view.inspect().find(viewWithAccessibilityIdentifier: "rainy")
+        XCTAssertNotNil(image, "天気が雨のときに雨の画像が表示されるべきです")
+    }
 }
