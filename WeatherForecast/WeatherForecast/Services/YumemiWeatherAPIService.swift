@@ -9,7 +9,7 @@ import Foundation
 import YumemiWeather
 
 final class YumemiWeatherAPIService {
-    // リロード用の新しいメソッドを定義
+    // リロード用のメソッド
     static func reloadWeather(request: WeatherRequest, completion: (Result<WeatherResponse, Error>) -> Void) {
         guard let jsonString = try? JSONEncoder().encode(request),
               let jsonStringAsString = String(data: jsonString, encoding: .utf8) else {
@@ -22,18 +22,10 @@ final class YumemiWeatherAPIService {
 
     // 天気情報を取得するメソッド
     static func fetchWeather(with jsonString: String, completion: (Result<WeatherResponse, Error>) -> Void) {
-        
-        // JSON文字列をData型に変換
         let jsonData = Data(jsonString.utf8)
-
-        // リクエストを `YumemiWeather` API に送る
         do {
             let responseString = try YumemiWeather.fetchWeather(String(data: jsonData, encoding: .utf8) ?? "")
-            
-            // レスポンスデータをDataに変換
             let responseData = Data(responseString.utf8)
-            
-            // レスポンスデータをデコード
             do {
                 let weatherResponse = try JSONDecoder().decode(WeatherResponse.self, from: responseData)
                 completion(.success(weatherResponse))
