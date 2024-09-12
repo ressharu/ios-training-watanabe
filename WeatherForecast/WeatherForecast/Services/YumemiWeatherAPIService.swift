@@ -24,20 +24,14 @@ final class YumemiWeatherAPIService {
     static func fetchWeather(with jsonString: String, completion: (Result<WeatherResponse, Error>) -> Void) {
         
         // JSON文字列をData型に変換
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            completion(.failure(YumemiWeatherAPIError.jsonEncodingError))
-            return
-        }
+        let jsonData = Data(jsonString.utf8)
 
         // リクエストを `YumemiWeather` API に送る
         do {
             let responseString = try YumemiWeather.fetchWeather(String(data: jsonData, encoding: .utf8) ?? "")
             
             // レスポンスデータをDataに変換
-            guard let responseData = responseString.data(using: .utf8) else {
-                completion(.failure(YumemiWeatherAPIError.responseDataError))
-                return
-            }
+            let responseData = Data(responseString.utf8)
             
             // レスポンスデータをデコード
             do {
