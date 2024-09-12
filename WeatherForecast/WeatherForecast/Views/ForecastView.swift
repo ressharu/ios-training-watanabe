@@ -21,6 +21,7 @@ struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
                         .renderingMode(.template)
                         .aspectRatio(1.0, contentMode: .fit)
                         .foregroundStyle(weatherController.weatherResponse.weatherCondition.color)
+                        .accessibilityIdentifier(weatherController.weatherResponse.weatherCondition.ImageName)
                     HStack(spacing: 0) {
                         Text("\(weatherController.weatherResponse.minTemperature)")
                             .foregroundStyle(Color.blue)
