@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct ClosedView: View {
-    @State private var showClosedView = false
+    @State private var isPresented = false
     
     var body: some View {
         VStack {}
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.black)
-            .task(id: showClosedView) {
+            .task(id: isPresented) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    showClosedView = true
+                    isPresented = true
                 }
             }
-            .fullScreenCover(isPresented: $showClosedView) {
+            .fullScreenCover(isPresented: $isPresented) {
                 ForecastView()
             }
     }
