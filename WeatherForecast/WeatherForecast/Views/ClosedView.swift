@@ -14,9 +14,7 @@ struct ClosedView: View {
         Color.black
             .background(.black)
             .task(id: isPresented) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     isPresented = true
-                }
             }
             .fullScreenCover(isPresented: $isPresented) {
                 ForecastView()
