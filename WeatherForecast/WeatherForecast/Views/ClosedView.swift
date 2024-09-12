@@ -14,7 +14,7 @@ struct ClosedView: View {
         Color.black
             .background(.black)
             .task(id: isPresented) {
-                    isPresented = true
+                isPresented = true
             }
             .fullScreenCover(isPresented: $isPresented) {
                 ForecastView()
