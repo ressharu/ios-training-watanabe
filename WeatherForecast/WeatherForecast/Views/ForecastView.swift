@@ -16,16 +16,16 @@ struct ForecastView: View {
             VStack(spacing: 0) {
                 Spacer()
                 VStack(alignment: .center, spacing: 0) {
-                    Image(weatherController.weatherCondition.ImageName) // EnumのrawValueを使用して画像名を設定
+                    Image(weatherController.weatherResponse.weatherCondition.ImageName)
                         .resizable()
                         .renderingMode(.template)
                         .aspectRatio(1.0, contentMode: .fit)
-                        .foregroundStyle(weatherController.weatherCondition.color) // Enumのcolorプロパティを使用
+                        .foregroundStyle(weatherController.weatherResponse.weatherCondition.color)
                     HStack(spacing: 0) {
-                        Text("UILabel")
+                        Text("\(weatherController.weatherResponse.minTemperature)")
                             .foregroundStyle(Color.blue)
                             .frame(maxWidth: .infinity)
-                        Text("UILabel")
+                        Text("\(weatherController.weatherResponse.maxTemperature)")
                             .foregroundStyle(Color.red)
                             .frame(maxWidth: .infinity)
                     }
@@ -42,7 +42,7 @@ struct ForecastView: View {
                                 weatherController.reloadWeather()
                             }
                             .frame(maxWidth: .infinity)
-                            .alert("Error", isPresented: $weatherController.isErrorPresented, presenting: weatherController.errorMessage) { _ in
+                            .alert("Error", isPresented: $weatherController.hasError, presenting: weatherController.errorMessage) { _ in
                                 Button("OK") {
                                 }
                             } message: { errorMessage in

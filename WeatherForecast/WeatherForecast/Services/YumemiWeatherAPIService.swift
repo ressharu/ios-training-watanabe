@@ -9,12 +9,28 @@ import Foundation
 import YumemiWeather
 
 final class YumemiWeatherAPIService {
-    // リロード用の新しいメソッドを定義
-    static func reloadWeather(for area: String, completion: (Result<WeatherCondition, Error>) -> Void) {
+    // リロード用のメソッド
+    static func reloadWeather(request: WeatherRequest, completion: (Result<WeatherResponse, Error>) -> Void) {
+        guard let jsonString = try? JSONEncoder().encode(request),
+              let jsonStringAsString = String(data: jsonString, encoding: .utf8) else {
+            completion(.failure(YumemiWeatherAPIError.invalidRequestDataError))
+            return
+        }
+        fetchWeather(with: jsonStringAsString, completion: completion)
+    }
+    
+    // 天気情報を取得するメソッド
+    static func fetchWeather(with jsonString: String, completion: (Result<WeatherResponse, Error>) -> Void) {
+        let jsonData = Data(jsonString.utf8)
         do {
-            let weatherConditionString = try YumemiWeather.fetchWeatherCondition(at: area)
-            let weatherCondition = WeatherCondition(rawValue: weatherConditionString) ?? .sunny
-            completion(.success(weatherCondition))
+            let responseString = try YumemiWeather.fetchWeather(String(data: jsonData, encoding: .utf8) ?? "")
+            let responseData = Data(responseString.utf8)
+            do {
+                let weatherResponse = try JSONDecoder().decode(WeatherResponse.self, from: responseData)
+                completion(.success(weatherResponse))
+            } catch {
+                completion(.failure(YumemiWeatherAPIError.decodingError))
+            }
         } catch {
             completion(.failure(error))
         }
