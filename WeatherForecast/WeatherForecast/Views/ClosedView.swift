@@ -11,8 +11,7 @@ struct ClosedView: View {
     @State private var isPresented = false
     
     var body: some View {
-        VStack {}
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        Color.black
             .background(.black)
             .task(id: isPresented) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
