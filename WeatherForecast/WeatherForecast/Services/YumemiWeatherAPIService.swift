@@ -16,10 +16,10 @@ final class YumemiWeatherAPIService {
             completion(.failure(YumemiWeatherAPIError.invalidRequestDataError))
             return
         }
-
+        
         fetchWeather(with: jsonStringAsString, completion: completion)
     }
-
+    
     // 天気情報を取得するメソッド
     static func fetchWeather(with jsonString: String, completion: (Result<WeatherResponse, Error>) -> Void) {
         let jsonData = Data(jsonString.utf8)
@@ -37,7 +37,6 @@ final class YumemiWeatherAPIService {
         }
     }
 }
-
 
 extension YumemiWeatherError: LocalizedError {
     public var errorDescription: String? {
