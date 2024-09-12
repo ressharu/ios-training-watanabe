@@ -14,16 +14,9 @@ struct ClosedView: View {
         VStack {}
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.black)
-            .onAppear {
+            .task(id: showClosedView) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     showClosedView = true
-                }
-            }
-            .onChange(of: showClosedView) {
-                if !showClosedView {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        showClosedView = true
-                    }
                 }
             }
             .fullScreenCover(isPresented: $showClosedView) {
