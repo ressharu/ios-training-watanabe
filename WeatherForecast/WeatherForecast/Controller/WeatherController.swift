@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 final class WeatherController: ObservableObject {
     @Published var weatherResponse: WeatherResponse = WeatherResponse(maxTemperature: 0, date: "", minTemperature: 0, weatherCondition: .sunny)
