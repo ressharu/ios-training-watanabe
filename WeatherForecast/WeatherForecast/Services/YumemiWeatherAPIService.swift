@@ -10,8 +10,7 @@ import YumemiWeather
 
 final class YumemiWeatherAPIService {
     // リロード用の新しいメソッドを定義
-    static func reloadWeather(area: String, date: String, completion: (Result<WeatherResponse, Error>) -> Void) {
-        let request = WeatherRequest(area: area, date: date)
+    static func reloadWeather(request: WeatherRequest, completion: (Result<WeatherResponse, Error>) -> Void) {
         guard let jsonString = try? JSONEncoder().encode(request),
               let jsonStringAsString = String(data: jsonString, encoding: .utf8) else {
             completion(.failure(YumemiWeatherAPIError.invalidRequestDataError))

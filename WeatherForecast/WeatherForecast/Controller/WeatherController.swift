@@ -21,7 +21,7 @@ final class WeatherController: ObservableObject {
 
         let weatherRequest: WeatherRequest = WeatherRequest(area: "tokyo", date: "2024-09-06T12:00:00+09:00")
         
-        YumemiWeatherAPIService.reloadWeather(area: weatherRequest.area, date: weatherRequest.date) { [weak self] result in
+        YumemiWeatherAPIService.reloadWeather(request: weatherRequest) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weatherResponse):
