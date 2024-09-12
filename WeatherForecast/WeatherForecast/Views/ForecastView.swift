@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct ForecastView: View {
-    
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var weatherController = WeatherController()
-    @Binding var showClosedView: Bool
     
     var body: some View {
         GeometryReader { geometry in
@@ -36,7 +35,7 @@ struct ForecastView: View {
                     .overlay(alignment: .top) {
                         HStack(spacing: 0) {
                             Button("Close") {
-                                showClosedView = false
+                                dismiss()
                             }
                             .frame(maxWidth: .infinity)
                             Button("Reload") {

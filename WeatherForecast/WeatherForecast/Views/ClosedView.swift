@@ -27,7 +27,7 @@ struct ClosedView: View {
                 }
             }
             .fullScreenCover(isPresented: $showClosedView) {
-                ForecastView(showClosedView: $showClosedView)
+                ForecastView()
             }
     }
 }
