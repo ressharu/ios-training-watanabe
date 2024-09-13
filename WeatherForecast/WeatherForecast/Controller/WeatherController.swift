@@ -23,7 +23,11 @@ final class WeatherControllerImpl: ForecastViewControllerProtocol {
         }
     }
     @Published var hasError: Bool = false
-    @Published var isLoading: Bool = false
+    @Published var isLoading: Bool = false {
+        didSet {
+            print("isLoading changed to: \(isLoading)")
+        }
+    }
     
     init() {
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { [weak self] _ in
@@ -33,15 +37,13 @@ final class WeatherControllerImpl: ForecastViewControllerProtocol {
     
     // 天気情報をAPIから取得し、状態を更新するメソッド
     func reloadWeather() {
-        DispatchQueue.main.async {
-            self.isLoading = true
-        }
         print("isLoading: \(String(describing: isLoading))")
         
         let weatherRequest: WeatherRequest = WeatherRequest(area: "tokyo", date: "2024-09-06T12:00:00+09:00")
         
         YumemiWeatherAPIService.reloadWeather(request: weatherRequest) { [weak self] result in
             DispatchQueue.main.async {
+                self?.isLoading = true
                 switch result {
                 case .success(let weatherResponse):
                     self?.weatherResponse = weatherResponse

@@ -39,6 +39,8 @@ struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
                                 ProgressView("Loading...")
                                     .progressViewStyle(CircularProgressViewStyle())
                                     .padding()
+                            } else {
+                                Color.yellow
                             }
                         }
                         .frame(height: 40)
