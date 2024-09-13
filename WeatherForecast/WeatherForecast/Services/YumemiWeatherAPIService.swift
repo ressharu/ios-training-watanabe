@@ -11,12 +11,11 @@ import YumemiWeather
 final class YumemiWeatherAPIService {
     // リロード用のメソッド
     static func reloadWeather(request: WeatherRequest, completion: (Result<WeatherResponse, Error>) -> Void) {
-        guard let jsonString = try? JSONEncoder().encode(request),
-              let jsonStringAsString = String(data: jsonString, encoding: .utf8) else {
+        guard let jsonString = encodeWeatherRequest(request) else {
             completion(.failure(YumemiWeatherAPIError.invalidRequestDataError))
             return
         }
-        fetchWeather(with: jsonStringAsString, completion: completion)
+        fetchWeather(with: jsonString, completion: completion)
     }
     
     // 天気情報を取得するメソッド
@@ -34,6 +33,14 @@ final class YumemiWeatherAPIService {
         } catch {
             completion(.failure(error))
         }
+    }
+    
+    //エンコードテスト
+    static func encodeWeatherRequest(_ request: WeatherRequest) -> String? {
+        guard let jsonData = try? JSONEncoder().encode(request) else {
+            return nil
+        }
+        return String(data: jsonData, encoding: .utf8)
     }
 }
 
