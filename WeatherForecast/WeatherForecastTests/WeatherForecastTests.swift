@@ -46,4 +46,13 @@ final class WeatherForecastTests: XCTestCase {
         let image = try view.inspect().find(viewWithAccessibilityIdentifier: "rainy")
         XCTAssertNotNil(image, "天気が雨のときに雨の画像が表示されるべきです")
     }
+    
+    func testEncodeWeatherRequest() throws {
+        let weatherRequest = WeatherRequest(area: "tokyo", date: "2024-09-06T12:00:00+09:00")
+        let encodedString = YumemiWeatherAPIService.encodeWeatherRequest(weatherRequest)
+        let expectedJSONString = """
+            {"area":"tokyo","date":"2024-09-06T12:00:00+09:00"}
+            """
+        XCTAssertEqual(encodedString, expectedJSONString, "WeatherRequestのエンコードが正しくありません")
+    }
 }
