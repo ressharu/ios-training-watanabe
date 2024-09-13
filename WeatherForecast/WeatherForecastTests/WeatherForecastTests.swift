@@ -23,28 +23,23 @@ final class WeatherForecastTests: XCTestCase {
         weatherController = nil
     }
     
+    func testWeatherImage(for condition: WeatherCondition) throws {
+        weatherController.weatherResponse.weatherCondition = condition
+        let view = ForecastView(weatherController: self.weatherController)
+        let image = try view.inspect().find(viewWithAccessibilityIdentifier: condition.ImageName)
+        XCTAssertNotNil(image, "天気が\(condition.rawValue)のときに\(condition.ImageName)の画像が表示されるべきです")
+    }
+    
     func testSunnyWeatherImage() throws {
-        weatherController.weatherResponse.weatherCondition = .sunny
-        let view = ForecastView(weatherController: self.weatherController)
-        
-        let image = try view.inspect().find(viewWithAccessibilityIdentifier: "sunny")
-        XCTAssertNotNil(image, "天気が晴れのときに晴れの画像が表示されるべきです")
+        try testWeatherImage(for: .sunny)
     }
-    
+
     func testCloudyWeatherImage() throws {
-        weatherController.weatherResponse.weatherCondition = .cloudy
-        let view = ForecastView(weatherController: self.weatherController)
-        
-        let image = try view.inspect().find(viewWithAccessibilityIdentifier: "cloudy")
-        XCTAssertNotNil(image, "天気が曇りのときに曇りの画像が表示されるべきです")
+        try testWeatherImage(for: .cloudy)
     }
-    
+
     func testRainyWeatherImage() throws {
-        weatherController.weatherResponse.weatherCondition = .rainy
-        let view = ForecastView(weatherController: self.weatherController)
-        
-        let image = try view.inspect().find(viewWithAccessibilityIdentifier: "rainy")
-        XCTAssertNotNil(image, "天気が雨のときに雨の画像が表示されるべきです")
+        try testWeatherImage(for: .rainy)
     }
     
     func testEncodeWeatherRequest() throws {
