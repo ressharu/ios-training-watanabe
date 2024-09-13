@@ -55,4 +55,22 @@ final class WeatherForecastTests: XCTestCase {
             """
         XCTAssertEqual(encodedString, expectedJSONString, "WeatherRequestのエンコードが正しくありません")
     }
+    
+    // デコードのテスト
+    func testDecodeWeatherResponse() throws {
+        let jsonString = """
+            {"max_temperature":30,"date":"2024-09-06","min_temperature":20,"weather_condition":"sunny"}
+            """
+        let expectedResponse = WeatherResponse(
+            maxTemperature: 30,
+            date: "2024-09-06",
+            minTemperature: 20,
+            weatherCondition: .sunny
+        )
+        let decodedResponse = YumemiWeatherAPIService.decodeWeatherResponse(jsonString)
+        XCTAssertEqual(decodedResponse?.maxTemperature, expectedResponse.maxTemperature, "最高気温が一致しません")
+        XCTAssertEqual(decodedResponse?.minTemperature, expectedResponse.minTemperature, "最低気温が一致しません")
+        XCTAssertEqual(decodedResponse?.date, expectedResponse.date, "日付が一致しません")
+        XCTAssertEqual(decodedResponse?.weatherCondition, expectedResponse.weatherCondition, "天気の状態が一致しません")
+    }
 }
