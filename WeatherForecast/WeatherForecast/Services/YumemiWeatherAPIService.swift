@@ -23,13 +23,11 @@ final class YumemiWeatherAPIService {
         let jsonData = Data(jsonString.utf8)
         do {
             let responseString = try YumemiWeather.fetchWeather(String(data: jsonData, encoding: .utf8) ?? "")
-            let responseData = Data(responseString.utf8)
-            do {
-                let weatherResponse = try JSONDecoder().decode(WeatherResponse.self, from: responseData)
-                completion(.success(weatherResponse))
-            } catch {
+            guard let weatherResponse = decodeWeatherResponse(responseString) else {
                 completion(.failure(YumemiWeatherAPIError.decodingError))
+                return
             }
+            completion(.success(weatherResponse))
         } catch {
             completion(.failure(error))
         }
@@ -41,6 +39,12 @@ final class YumemiWeatherAPIService {
             return nil
         }
         return String(data: jsonData, encoding: .utf8)
+    }
+    
+    //デコードテスト
+    static func decodeWeatherResponse(_ jsonString: String) -> WeatherResponse? {
+        let jsonData = Data(jsonString.utf8)
+        return try? JSONDecoder().decode(WeatherResponse.self, from: jsonData)
     }
 }
 
