@@ -10,7 +10,9 @@ import YumemiWeather
 
 final class YumemiWeatherAPIService {
     // リロード用のメソッド
-    static func reloadWeather(request: WeatherRequest, completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
+    static func reloadWeather(request: WeatherRequest,
+        completion: @escaping (Result<WeatherResponse, Error>) -> Void
+    ) {
         guard let jsonString = encodeWeatherRequest(request) else {
             completion(.failure(YumemiWeatherAPIError.invalidRequestDataError))
             return

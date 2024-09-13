@@ -16,7 +16,12 @@ protocol ForecastViewControllerProtocol: ObservableObject {
 }
 
 final class WeatherControllerImpl: ForecastViewControllerProtocol {
-    @Published var weatherResponse: WeatherResponse = WeatherResponse(maxTemperature: 0, date: "", minTemperature: 0, weatherCondition: .sunny)
+    @Published var weatherResponse: WeatherResponse = WeatherResponse(
+        maxTemperature: 0,
+        date: "",
+        minTemperature: 0,
+        weatherCondition: .sunny
+    )
     @Published var errorMessage: String? {
         didSet {
             self.hasError = (errorMessage != nil)
@@ -37,7 +42,9 @@ final class WeatherControllerImpl: ForecastViewControllerProtocol {
     
     // 天気情報をAPIから取得し、状態を更新するメソッド
     func reloadWeather() {
-        let weatherRequest: WeatherRequest = WeatherRequest(area: "tokyo", date: "2024-09-06T12:00:00+09:00")
+        let weatherRequest: WeatherRequest = WeatherRequest(area: "tokyo",
+            date: "2024-09-06T12:00:00+09:00"
+        )
         self.isLoading = true
         YumemiWeatherAPIService.reloadWeather(request: weatherRequest) { [weak self] result in
             guard let self = self else { return }
