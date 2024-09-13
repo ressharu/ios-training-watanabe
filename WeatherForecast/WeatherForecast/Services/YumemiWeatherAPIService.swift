@@ -22,7 +22,7 @@ final class YumemiWeatherAPIService {
     static func fetchWeather(with jsonString: String, completion: (Result<WeatherResponse, Error>) -> Void) {
         let jsonData = Data(jsonString.utf8)
         do {
-            let responseString = try YumemiWeather.fetchWeather(String(data: jsonData, encoding: .utf8) ?? "")
+            let responseString = try YumemiWeather.syncFetchWeather(String(data: jsonData, encoding: .utf8) ?? "")
             guard let weatherResponse = decodeWeatherResponse(responseString) else {
                 completion(.failure(YumemiWeatherAPIError.decodingError))
                 return
