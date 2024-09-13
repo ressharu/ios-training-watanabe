@@ -36,16 +36,13 @@ struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
                     .overlay(alignment: .top) {
                         VStack {
                             if weatherController.isLoading {
-                                ProgressView("Loading...")
+                                ProgressView()
                                     .progressViewStyle(CircularProgressViewStyle())
                                     .padding()
-                            } else {
-                                Color.yellow
                             }
                         }
                         .frame(height: 40)
                         .padding(.vertical, 0)
-                        .border(.red)
                         HStack(spacing: 0) {
                             Button("Close") {
                                 dismiss()
@@ -63,7 +60,6 @@ struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
                         }
                         .padding(.top, 80)
                         .frame(width: geometry.size.width / 2)
-                        .border(.black)
                     }
             }
             .frame(width: geometry.size.width / 2, height: geometry.size.height)
