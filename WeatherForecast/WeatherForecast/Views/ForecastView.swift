@@ -47,7 +47,7 @@ struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
                                 Button("OK") {
                                 }
                             } message: { errorMessage in
-
+                                
                                 Text(errorMessage)
                             }
                         }
