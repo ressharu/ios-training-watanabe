@@ -7,7 +7,14 @@
 
 import SwiftUI
 
-final class WeatherController: ObservableObject {
+protocol ForecastViewControllerProtocol: ObservableObject {
+    var weatherResponse: WeatherResponse { get }
+    var errorMessage: String? { get }
+    var hasError: Bool { get set }
+    func reloadWeather()
+}
+
+final class WeatherControllerImpl: ForecastViewControllerProtocol {
     @Published var weatherResponse: WeatherResponse = WeatherResponse(maxTemperature: 0, date: "", minTemperature: 0, weatherCondition: .sunny)
     @Published var errorMessage: String? {
         didSet {
@@ -15,7 +22,7 @@ final class WeatherController: ObservableObject {
         }
     }
     @Published var hasError: Bool = false
-
+    
     init() {
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { [weak self] _ in
             self?.reloadWeather()
@@ -24,7 +31,7 @@ final class WeatherController: ObservableObject {
     
     // 天気情報をAPIから取得し、状態を更新するメソッド
     func reloadWeather() {
-
+        
         let weatherRequest: WeatherRequest = WeatherRequest(area: "tokyo", date: "2024-09-06T12:00:00+09:00")
         
         YumemiWeatherAPIService.reloadWeather(request: weatherRequest) { [weak self] result in

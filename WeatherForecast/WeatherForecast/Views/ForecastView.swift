@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ForecastView: View {
-    
-    @ObservedObject var weatherController = WeatherController()
+struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
+    @Environment(\.dismiss) var dismiss
+    @ObservedObject var weatherController: WeatherController
     
     var body: some View {
         GeometryReader { geometry in
@@ -21,6 +21,7 @@ struct ForecastView: View {
                         .renderingMode(.template)
                         .aspectRatio(1.0, contentMode: .fit)
                         .foregroundStyle(weatherController.weatherResponse.weatherCondition.color)
+                        .accessibilityIdentifier(weatherController.weatherResponse.weatherCondition.ImageName)
                     HStack(spacing: 0) {
                         Text("\(weatherController.weatherResponse.minTemperature)")
                             .foregroundStyle(Color.blue)
@@ -35,7 +36,7 @@ struct ForecastView: View {
                     .overlay(alignment: .top) {
                         HStack(spacing: 0) {
                             Button("Close") {
-                                // TODO: ここに機能を追加
+                                dismiss()
                             }
                             .frame(maxWidth: .infinity)
                             Button("Reload") {
@@ -46,7 +47,7 @@ struct ForecastView: View {
                                 Button("OK") {
                                 }
                             } message: { errorMessage in
-
+                                
                                 Text(errorMessage)
                             }
                         }
@@ -58,8 +59,4 @@ struct ForecastView: View {
             .frame(maxWidth: .infinity)
         }
     }
-}
-
-#Preview {
-    ForecastView()
 }
