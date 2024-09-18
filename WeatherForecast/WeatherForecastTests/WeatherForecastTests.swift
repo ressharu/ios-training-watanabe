@@ -48,7 +48,14 @@ final class WeatherForecastTests: XCTestCase {
         let expectedJSONString = """
             {"area":"tokyo","date":"2024-09-06T12:00:00+09:00"}
             """
-        XCTAssertEqual(encodedString, expectedJSONString, "WeatherRequestのエンコードが正しくありません")
+        
+        let encodedData = encodedString?.data(using: .utf8)
+        let encodedDictionary = try XCTUnwrap(encodedData.flatMap { try? JSONSerialization.jsonObject(with: $0) as? NSDictionary })
+        
+        let expectedData = expectedJSONString.data(using: .utf8)!
+        let expectedDictionary = try JSONSerialization.jsonObject(with: expectedData) as? NSDictionary
+        
+        XCTAssertEqual(encodedDictionary, expectedDictionary, "WeatherRequestのエンコードが正しくありません")
     }
     
     // デコードのテスト
