@@ -8,6 +8,11 @@
 import Foundation
 import YumemiWeather
 
+protocol WeatherAPIServiceDelegate: AnyObject {
+    func didReceiveWeatherResponse(_ response: WeatherResponse)
+    func didFailWithError(_ error: Error)
+}
+
 final class YumemiWeatherAPIService {
     // リロード用のメソッド
     static func reloadWeather(request: WeatherRequest,
