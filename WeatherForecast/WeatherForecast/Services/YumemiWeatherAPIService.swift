@@ -42,7 +42,7 @@ final class YumemiWeatherAPIService {
     }
     
     //エンコードテスト
-    static func encodeWeatherRequest(_ request: WeatherRequest) -> String? {
+    private func encodeWeatherRequest(_ request: WeatherRequest) -> String? {
         guard let jsonData = try? JSONEncoder().encode(request) else {
             return nil
         }
@@ -50,7 +50,7 @@ final class YumemiWeatherAPIService {
     }
     
     //デコードテスト
-    static func decodeWeatherResponse(_ jsonString: String) -> WeatherResponse? {
+    private func decodeWeatherResponse(_ jsonString: String) -> WeatherResponse? {
         let jsonData = Data(jsonString.utf8)
         return try? JSONDecoder().decode(WeatherResponse.self, from: jsonData)
     }
