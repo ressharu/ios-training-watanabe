@@ -25,10 +25,9 @@ final class YumemiWeatherAPIService {
         with jsonString: String,
         completion: @escaping (Result<WeatherResponse, Error>) -> Void
     ) {
-        let jsonData = Data(jsonString.utf8)
         Task {
             do {
-                let responseString = try YumemiWeather.syncFetchWeather(String(data: jsonData, encoding: .utf8) ?? "")
+                let responseString = try YumemiWeather.syncFetchWeather(jsonString)
                 guard let weatherResponse = decodeWeatherResponse(responseString) else {
                     completion(.failure(YumemiWeatherAPIError.decodingError))
                     return
