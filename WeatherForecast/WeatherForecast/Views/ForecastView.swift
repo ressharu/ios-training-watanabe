@@ -34,6 +34,15 @@ struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
                 .frame(maxWidth: .infinity)
                 Spacer()
                     .overlay(alignment: .top) {
+                        VStack {
+                            if weatherController.isLoading {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                    .padding()
+                            }
+                        }
+                        .frame(height: 40)
+                        .padding(.vertical, 0)
                         HStack(spacing: 0) {
                             Button("Close") {
                                 dismiss()
@@ -43,11 +52,11 @@ struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
                                 weatherController.reloadWeather()
                             }
                             .frame(maxWidth: .infinity)
-                            .alert("Error", isPresented: $weatherController.hasError, presenting: weatherController.errorMessage) { _ in
-                                Button("OK") {
-                                }
+                            .alert("Error", isPresented: $weatherController.hasError,
+                                   presenting: weatherController.errorMessage
+                            ) { _ in
+                                Button("OK") {}
                             } message: { errorMessage in
-                                
                                 Text(errorMessage)
                             }
                         }
