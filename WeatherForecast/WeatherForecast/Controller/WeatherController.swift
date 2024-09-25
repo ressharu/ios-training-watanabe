@@ -43,6 +43,10 @@ final class WeatherControllerImpl: ForecastViewControllerProtocol, WeatherAPISer
         }
     }
     
+    deinit {
+        print("ForecastView deinit")
+    }
+    
     // 天気情報をAPIから取得し、状態を更新するメソッド
     func reloadWeather() {
         let weatherRequest: WeatherRequest = WeatherRequest(area: "tokyo",

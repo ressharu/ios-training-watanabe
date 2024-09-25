@@ -10,7 +10,6 @@ import SwiftUI
 struct ForecastView<WeatherController: ForecastViewControllerProtocol>: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var weatherController: WeatherController
-    private let viewDeinitLogger = ViewDeinitLogger()
     
     var body: some View {
         GeometryReader { geometry in
