@@ -15,7 +15,7 @@ protocol ForecastViewControllerProtocol: ObservableObject {
     func reloadWeather()
 }
 
-final class WeatherControllerImpl: ForecastViewControllerProtocol {
+final class WeatherControllerImpl: ForecastViewControllerProtocol, WeatherAPIServiceDelegate {
     @Published var weatherResponse: WeatherResponse = WeatherResponse(
         maxTemperature: 0,
         date: "",
@@ -34,10 +34,17 @@ final class WeatherControllerImpl: ForecastViewControllerProtocol {
         }
     }
     
+    private let yumemiWeatherAPIService = YumemiWeatherAPIService()
+    
     init() {
+        yumemiWeatherAPIService.delegate = self
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { [weak self] _ in
             self?.reloadWeather()
         }
+    }
+    
+    deinit {
+        print("WeatherController deinit")
     }
     
     // 天気情報をAPIから取得し、状態を更新するメソッド
@@ -46,18 +53,21 @@ final class WeatherControllerImpl: ForecastViewControllerProtocol {
             date: "2024-09-06T12:00:00+09:00"
         )
         self.isLoading = true
-        YumemiWeatherAPIService.reloadWeather(request: weatherRequest) { [weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let weatherResponse):
-                    self.weatherResponse = weatherResponse
-                    self.errorMessage = nil
-                case .failure(let error):
-                    self.errorMessage = error.localizedDescription
-                }
-                self.isLoading = false
-            }
+        yumemiWeatherAPIService.reloadWeather(request: weatherRequest)
+    }
+    
+    func didReceiveWeatherResponse(_ response: WeatherResponse) {
+        DispatchQueue.main.async {
+            self.weatherResponse = response
+            self.errorMessage = nil
+            self.isLoading = false
+        }
+    }
+    
+    func didFailWithError(_ error: Error) {
+        DispatchQueue.main.async {
+            self.errorMessage = error.localizedDescription
+            self.isLoading = false
         }
     }
 }
