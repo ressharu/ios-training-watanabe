@@ -44,7 +44,7 @@ final class WeatherControllerImpl: ForecastViewControllerProtocol, WeatherAPISer
     }
     
     deinit {
-        print("ForecastView deinit")
+        print("WeatherController deinit")
     }
     
     // 天気情報をAPIから取得し、状態を更新するメソッド
