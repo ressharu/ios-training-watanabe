@@ -40,20 +40,17 @@ final class WeatherControllerImpl: ForecastViewControllerProtocol {
         print("isLoading: \(String(describing: isLoading))")
         
         let weatherRequest: WeatherRequest = WeatherRequest(area: "tokyo", date: "2024-09-06T12:00:00+09:00")
-        
+        self.isLoading = true
         YumemiWeatherAPIService.reloadWeather(request: weatherRequest) { [weak self] result in
             DispatchQueue.main.async {
-                self?.isLoading = true
                 switch result {
                 case .success(let weatherResponse):
                     self?.weatherResponse = weatherResponse
-                    self?.errorMessage = nil // エラーがなければメッセージをクリア
+                    self?.errorMessage = nil
                 case .failure(let error):
-                    self?.errorMessage = String(error.localizedDescription)
-                    print(self?.errorMessage ?? "")
+                    self?.errorMessage = error.localizedDescription
                 }
                 self?.isLoading = false
-                print("After isLoading: \(String(describing: self?.isLoading))")
             }
         }
     }
